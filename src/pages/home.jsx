@@ -113,7 +113,7 @@ function Homepage() {
 
     alert("Bericht verstuurd!");
     setFormData({ name: "", email: "", phone: "", message: "" });
-  };
+  }; 
 
   // Handle ESC key to close modal and prevent body scroll
   useEffect(() => {
