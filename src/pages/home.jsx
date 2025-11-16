@@ -120,6 +120,7 @@ function Homepage() {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && openModal) {
         setOpenModal(null);
+        document.body.style.overflow = 'auto';
       }
       if (e.key === 'Escape' && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
@@ -129,12 +130,15 @@ function Homepage() {
     if (openModal) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+    } else if (!openModal) {
+      document.body.style.overflow = 'auto';
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       if (!openModal) {
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = 'auto';
+        console.log("overflow")
       }
     };
   }, [openModal, isMobileMenuOpen]);
@@ -242,13 +246,13 @@ function Homepage() {
           Als Personal trainer help ik jou graag om jou doelstelling wel te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar moet ik beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#ba974d] hover:bg-[#99742c] text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105">
-              <a href="#contact">
+            <button className="bg-[#ba974d] hover:bg-[#99742c] text-white py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105">
+              <a href="#contact" className='px-8 py-4'>
                 Begin vandaag nog
               </a>  
             </button>
-            <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition border border-gray-300">
-              <a href="#about">
+            <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg text-lg font-semibold transition border border-gray-300">
+              <a href="#about" className='px-8 py-4'>
                 Meer info
               </a>              
             </button>
