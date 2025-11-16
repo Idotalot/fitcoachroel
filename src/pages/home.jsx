@@ -68,15 +68,15 @@ function Homepage() {
         {
           item: 'Losse sessie',
           price: '€20,00',
-          additionalInfo: 'Per sessie van 60 minuten'
+          additionalInfo: 'Per sessie van 60 minuten (Per persoon)'
         },
         {
           item: 'Strippenkaart 15 sessies',
           price: '€225,00',
-          additionalInfo: '€15 per groepssessie'
+          additionalInfo: '€15 per groepssessie (Per persoon)'
         },
       ],
-      duration: 'Sessies van 60 minuten (Per persoon)'
+      duration: 'Sessies van 60 minuten'
     },
     duo: {
       title: 'Duo Training',
@@ -94,12 +94,12 @@ function Homepage() {
         {
           item: 'Losse sessie',
           price: '€35,00',
-          additionalInfo: 'Per sessie van 60 minuten (per persoon)'
+          additionalInfo: 'Per sessie van 60 minuten (Per persoon)'
         },
         {
           item: 'Pakket van 10 sessies',
           price: '€450,00',
-          additionalInfo: '€30 per sessie'
+          additionalInfo: '€30 per sessie (Per persoon)'
         }
       ],
       duration: 'Sessies van 60 minuten'
@@ -743,7 +743,7 @@ function Homepage() {
                 </svg>
               </a>
               <a 
-                href="https://www.facebook.com/fitcoachroel" 
+                href="https://www.facebook.com/people/Fitcoachroel/61583747917015/?mibextid=wwXIfr&rdid=5vQZeIgb1USqd0EC&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17RGSy4T4P%2F%3Fmibextid%3DwwXIfrl" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-[#ba974d] transition"
