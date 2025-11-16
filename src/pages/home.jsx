@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { images } from '../ultils/importImages';
+import ContactForm from '../components/contactForm';
+import Carousel from '../components/progressCarousel';
 
 function Homepage() {
   const [openModal, setOpenModal] = useState(null);
@@ -11,6 +13,11 @@ function Homepage() {
     message: ""
   });
   
+  const progressImages = [
+    require("../images/progress1.jpg"),
+    require("../images/progress2.jpg"),
+    require("../images/progress3.jpg"),
+  ]
 
   const programDetails = {
     personal: {
@@ -33,6 +40,11 @@ function Homepage() {
           additionalInfo: 'Eénmalige introductie sessie van 60 minuten'
         },
         {
+          item: 'Losse sessie',
+          price: '€60,00',
+          additionalInfo: 'Per sessie van 60 minuten'
+        },
+        {
           item: 'Pakket van 10 sessies',
           price: '€599,00',
           additionalInfo: '€59,90 per sessie'
@@ -44,7 +56,7 @@ function Homepage() {
       title: 'Groepstraining',
       description: 'Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen. De lessen vinden plaats op locatie bij Maas en Waalfit.',
       features: [
-        'Kleine groepen (max 4-6 personen) voor persoonlijke aandacht',
+        'Kleine groepen (max 4-8 personen) voor persoonlijke aandacht',
         'Gezellige en motiverende sfeer',
         'Groepsdynamiek die je extra motiveert',
         'Diverse trainingen: kracht, cardio, HIIT',
@@ -64,7 +76,7 @@ function Homepage() {
           additionalInfo: '€15 per groepssessie'
         },
       ],
-      duration: 'Sessies van 60 minuten'
+      duration: 'Sessies van 60 minuten (Per persoon)'
     },
     duo: {
       title: 'Duo Training',
@@ -81,13 +93,13 @@ function Homepage() {
       pricing: [
         {
           item: 'Losse sessie',
-          price: '€40,00',
+          price: '€35,00',
           additionalInfo: 'Per sessie van 60 minuten (per persoon)'
         },
         {
           item: 'Pakket van 10 sessies',
           price: '€450,00',
-          additionalInfo: '30 per sessie'
+          additionalInfo: '€30 per sessie'
         }
       ],
       duration: 'Sessies van 60 minuten'
@@ -240,7 +252,7 @@ function Homepage() {
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             FitCoachRoel: 
-            <span className="text-[#ba974d]"> Het behalen van jouw doel.</span>
+            <span className="text-[#ba974d]"> Voor het behalen van jouw doel.</span>
           </h1>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
           Als Personal trainer help ik jou graag om jou doelstelling wel te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar moet ik beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor.
@@ -251,7 +263,7 @@ function Homepage() {
                 Begin vandaag nog
               </a>  
             </button>
-            <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg text-lg font-semibold transition border border-gray-300">
+            <button className="bg-gray-100 hover:bg-gray-200 text-gray-900 py-4 rounded-lg text-lg font-semibold transition border border-gray-300">
               <a href="#about" className='px-8 py-4'>
                 Meer info
               </a>              
@@ -293,15 +305,17 @@ function Homepage() {
           </div>
 
           <div className="bg-gray-50 p-8 rounded-lg hover:bg-gray-100 transition border border-gray-200">
-            <div className="w-16 h-16 bg-[#ba974d] rounded-full flex items-center justify-center mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Gegarandeerde Resultaten</h3>
-            <p className="text-gray-600">
-              
-            </p>
+            <a href='#progress'>
+              <div className="w-16 h-16 bg-[#ba974d] rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Gegarandeerde Resultaten</h3>
+              <p className="text-gray-600">
+                Behaal samen gegarandeerd het resultaat waar jij van droomt!
+              </p>
+            </a>
           </div>
         </div>
       </section>
@@ -368,19 +382,17 @@ function Homepage() {
                   Wie ben ik?
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Mijn naam is Roel Arts, ik ben 35 jaar en ik kom uit Beneden-Leeuwen.  
-                  Ik sta aan het begin van een nieuw avontuur als personal trainer onder de naam FitCoachRoel.                 
+                  Mijn naam is Roel Arts, 35 jaar en woon in Beneden-Leeuwen en ga het avontuurlijk aan als personal trainer onder de naam FitCoachRoel. Mijn doel, mensen sterker, fitter en zelfverzekerder worden.
+                  Wat voor mij centraal staat: duurzame resultaten door structuur, effectieve training en een aanpak die past bij jouw leven.
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Om te laten zien wat structuur, training en voeding écht met je lichaam kan doen, start ik mijn eigen 6-weken traject.  
-                  Mijn doel? Focus op spieropbouw, balans en duurzaamheid.
+                  Om te laten zien wat een doordachte combinatie van training en voeding kan betekenen, deel ik graag mijn eigen vooruitgang. Niet om te vergelijken, maar om te laten zien wat mogelijk is wanneer je de juiste focus en begeleiding hebt.
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Maar dit gaat niet alleen over mij. Ik wil jou inspireren om ook stappen te zetten richting jouw doelen — of dat nu afvallen is, sterker worden of simpelweg fitter leven.
+                  Mijn missie is om jou te inspireren om stappen te zetten richting jouw doelen — of je nu wilt afvallen, spiermassa wilt opbouwen of simpelweg een fittere levensstijl wilt creëren.
                 </p>
                 <p className="text-gray-600">
-                  Samen gaan we ervoor!
-                  Met focus, begeleiding en toewijding bouwen we aan de beste versie van jezelf.
+                  Samen werken we gericht aan een sterke, gezonde en duurzame versie van jezelf.
                 </p>
               </div>
               {/* <div className="bg-white p-8 rounded-lg shadow-lg"> */}
@@ -389,7 +401,7 @@ function Homepage() {
               </div>
             </div>
           </div>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto mb-20">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <img src={images['aboutme5.jpg']} alt="Roel Arts" className="w-full md:w-96 h-96 object-cover rounded-lg" />
@@ -418,6 +430,38 @@ function Homepage() {
                     <span>Motivatie en support</span>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1" id='progress'>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Mijn reis
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  In 2024 kreeg ik de diagnose Narcolepsie type 1.
+                  Een diagnose die mijn leven heeft veranderd.
+                  Ik wist niet wat het precies was, niet hoe ik ermee moest leven, alleen dat ik overdag steeds opnieuw in slaap viel, zonder controle, zonder waarschuwing.
+                  Het voelde alsof mijn lichaam me in de steek liet.
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Maar ik weigerde om op te geven.
+                  De volgende dag, schreef ik me in bij maasenwaalfit, voor het eerst in mijn leven de sportschool in.
+                  Ik wilde vechten, niet tegen mijn lichaam, maar vóór mezelf.
+                  Als ik moe was en in slaap viel dan lag het in ieder geval niet aan mij.
+                  Ik wilde sterker worden, mentaal én fysiek.
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Het afgelopen anderhalf jaar was zwaar en niet leuk!
+                  Tegenslag na tegenslag, momenten waarop ik wilde opgeven, dagen waarop ik niet meer wist hoe ik verder moest.
+                  Maar toch bleef ik geloven.
+                  In mezelf. In herstel. In de kracht van volhouden.
+                </p>
+              </div>
+              {/* <div className="bg-white p-8 rounded-lg shadow-lg"> */}
+              <div className="order-1 md:order-2">
+                <Carousel images={progressImages} />
               </div>
             </div>
           </div>
@@ -491,7 +535,7 @@ function Homepage() {
                 Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen.
               </p>
               <ul className="text-gray-600 space-y-2 mb-6">
-                <li>• Kleine groepen (max 4 personen)</li>
+                <li>• Kleine groepen (max 8 personen)</li>
                 <li>• Gezellige sfeer</li>
                 <li>• Motiverende omgeving</li>
                 <li>• Betaalbaar tarief</li>
@@ -519,7 +563,8 @@ function Homepage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   Laat een bericht achter
                 </h3>
-                <form className="space-y-6">
+                  <ContactForm />
+                {/* <form className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
                       Naam
@@ -574,7 +619,7 @@ function Homepage() {
                   >
                     Verstuur Bericht
                   </button>
-                </form>
+                </form> */}
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -582,38 +627,50 @@ function Homepage() {
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">Email</h4>
-                      <p className="text-gray-600">info@fitcoachroel.nl</p>
-                    </div>
+                    <a href='mailto:info@fitcoachroel.nl'>
+                      <div className="flex items-start">
+                        <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-1">Email</h4>
+                          <p className="text-gray-600">info@fitcoachroel.nl</p>
+                        </div>
+                      </div>
+                    </a>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">Telefoon</h4>
-                      <p className="text-gray-600">06-12345678</p>
-                    </div>
+                    <a href='tel:+31620093979'>
+                      <div className="flex items-start">
+                        <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-1">Telefoon</h4>
+                          <p className="text-gray-600"><a href='tel:+31620093979'>+31 (6) 20 09 39 79</a></p>
+                        </div>
+                      </div>
+                    </a>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">Locatie</h4>
-                      <p className="text-gray-600">Nederland</p>
-                    </div>
+                    <a href='https://maps.app.goo.gl/zvXeyHKRQ1qDD1rdA'>
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-[#ba974d] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-1">Locatie</h4>
+                        <p className="text-gray-600">Nijverheidsstraat 4a, 6658 EM Beneden-Leeuwen</p>
+                      </div>
+                    </div>                    
+                    </a>
                   </div>
                 </div>
                 <div className="mt-8 p-6 bg-white rounded-lg shadow-lg">
@@ -624,10 +681,7 @@ function Homepage() {
                     <span className="font-semibold">Maandag - Vrijdag:</span> 06:00 - 22:00
                   </p>
                   <p className="text-gray-600 mb-2">
-                    <span className="font-semibold">Zaterdag:</span> 08:00 - 18:00
-                  </p>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Zondag:</span> Gesloten
+                    <span className="font-semibold">Zaterdag & Zondag:</span> 08:00 - 18:00
                   </p>
                 </div>
               </div>
@@ -670,10 +724,36 @@ function Homepage() {
           <div className="text-gray-700 mb-4 md:mb-0">
             © 2025 FitCoachRoel. All rights reserved.
           </div>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Privacy</a>
-            <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Terms</a>
-            <a href="#contact" className="text-gray-600 hover:text-[#ccb521] transition">Contact</a>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Privacy</a>
+              <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Terms</a>
+              <a href="#contact" className="text-gray-600 hover:text-[#ccb521] transition">Contact</a>
+            </div>
+            <div className="flex space-x-4 items-center">
+              <a 
+                href="https://www.instagram.com/fitcoachroel" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#ba974d] transition"
+                aria-label="Instagram"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://www.facebook.com/fitcoachroel" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#ba974d] transition"
+                aria-label="Facebook"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
