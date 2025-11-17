@@ -176,94 +176,114 @@ function Homepage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className={`bg-[#1a181b] h-20 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between relative">
-            {/* Logo */}
-            <div className="md:flex-shrink-0">
-              <img src={images['logo.jpg']} alt="FitCoachRoel" className="h-20" />
-            </div>
-            {/* Desktop Menu - Centered */}
-            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6 items-center">
-              <a href="#home" className="text-gray-300 hover:text-white transition">Home</a>
-              <a href="#about" className="text-gray-300 hover:text-white transition">Over FitCoachRoel</a>
-              <a href="#programs" className="text-gray-300 hover:text-white transition">Programma's</a>
-              <a href="#contact" className="text-gray-300 hover:text-white transition">Contact</a>
-            </div>
-            {/* Desktop Button */}
-            <div className="hidden md:flex items-center">
-              <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-[#ba974d] hover:bg-[#99742c] text-white px-6 py-2 rounded-lg transition"
-              >
-                Neem contact op
-              </button>
-            </div>
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-300 hover:text-white transition focus:outline-none"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* Mobile Dropdown Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 right-0 bg-[#1a181b] border-t border-gray-700 shadow-lg z-50">
-            <div className="container mx-auto px-6 py-4">
-              <div className="flex flex-col space-y-4">
-                <a 
-                  href="#home" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white transition py-2"
-                >
-                  Home
-                </a>
-                <a 
-                  href="#about" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white transition py-2"
-                >
-                  Over FitCoachRoel
-                </a>
-                <a 
-                  href="#programs" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white transition py-2"
-                >
-                  Programma's
-                </a>
-                <a 
-                  href="#contact" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white transition py-2"
-                >
-                  Contact
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-      <div className="h-20" />
+      <nav
+  className={`h-20 fixed top-0 left-0 right-0 z-50 transition-all duration-300
+    ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}
+    ${isMobileMenuOpen ? 'bg-[#1a181b]' : 'backdrop-blur-xl bg-black/30'}
+  `}
+>
+  <div className="container mx-auto px-6">
+    <div className="flex items-center justify-between relative">
+      {/* Logo */}
+      <div className="md:flex-shrink-0">
+        <img
+          src={images['logo_transparent.jpg']}
+          alt="FitCoachRoel"
+          className="h-20"
+        />
+      </div>
+
+      {/* Desktop Menu */}
+      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6 items-center">
+        <a href="#home" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Home</a>
+        <a href="#about" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Over FitCoachRoel</a>
+        <a href="#programs" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Programma's</a>
+        <a href="#contact" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Contact</a>
+      </div>
+
+      {/* Desktop Button */}
+      <div className="hidden md:flex items-center">
+        <button
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-[#ba974d] hover:bg-[#99742c] text-white px-6 py-2 rounded-lg transition shadow-lg"
+        >
+          Neem contact op
+        </button>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden flex items-center">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="text-white drop-shadow-lg hover:text-[#b08c3e] transition focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Dropdown Menu — Smooth Slide + Fade */}
+  <div
+    className={`
+      md:hidden absolute top-20 left-0 right-0 bg-[#1a181b] shadow-lg z-50
+      overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+      ${isMobileMenuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-3'}
+    `}
+  >
+    <div className="container mx-auto px-6 py-4">
+      <div className="flex flex-col space-y-4">
+        <a
+          href="#home"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+        >
+          Home
+        </a>
+
+        <a
+          href="#about"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+        >
+          Over FitCoachRoel
+        </a>
+
+        <a
+          href="#programs"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+        >
+          Programma's
+        </a>
+
+        <a
+          href="#contact"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      {/* <div className="h-20" /> */}
 
       {/* Home Section - Home */}
       <section 
-        id="home" 
-        className="w-full px-6 py-20 scroll-mt-20npm s relative bg-cover bg-center bg-no-repeat min-h-[600px] flex items-center"
+        id="home"
+        className="w-full pb-20 pt-40 px-6 scroll-mt-20npm s relative bg-cover bg-center bg-no-repeat min-h-[680px] flex items-center"
         style={{
           backgroundImage: `url(${images['background2.jpg']})`,
         }}

@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -21,8 +25,36 @@ const Carousel = ({ images }) => {
     );
   };
 
+  // --- TOUCH HANDLERS ---
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide(); // swipe left → next
+      else prevSlide(); // swipe right → previous
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   return (
-    <div className="relative w-full md:w-96 max-w-xl mx-auto overflow-hidden rounded-lg">
+    <div
+      className="relative w-full md:w-96 max-w-xl mx-auto overflow-hidden rounded-lg"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Sliding Images */}
       <div
         className="flex transition-transform duration-700 ease-in-out"
