@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/wp-admin" element={<Admin />} />
+        <Route path='*' element={<Homepage />} />
       </Routes>
       <Analytics />
     </Router>
