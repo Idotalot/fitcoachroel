@@ -512,7 +512,7 @@ function Homepage() {
       <section id="programs" className="container mx-auto px-6 py-20 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
-            Mijn Programma's
+            Programma's
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition">
