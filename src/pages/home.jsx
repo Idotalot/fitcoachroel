@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { images } from '../ultils/importImages';
 import ContactForm from '../components/contactForm';
 import Carousel from '../components/progressCarousel';
@@ -6,6 +6,7 @@ import Carousel from '../components/progressCarousel';
 function Homepage() {
   const [openModal, setOpenModal] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +19,7 @@ function Homepage() {
     require("../images/progress2.jpg"),
     require("../images/progress3.jpg"),
   ]
+  const lastScrollY = useRef(0);
 
   const programDetails = {
     personal: {
@@ -155,10 +157,27 @@ function Homepage() {
     };
   }, [openModal, isMobileMenuOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 50) {
+        setIsNavVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setIsNavVisible(false);
+      } else {
+        setIsNavVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="bg-[#1a181b] h-20 relative">
+      <nav className={`bg-[#1a181b] h-20 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between relative">
             {/* Logo */}
@@ -239,6 +258,7 @@ function Homepage() {
           </div>
         )}
       </nav>
+      <div className="h-20" />
 
       {/* Home Section - Home */}
       <section 
@@ -255,7 +275,7 @@ function Homepage() {
             <span className="text-[#ba974d]"> Voor het behalen van jouw doel.</span>
           </h1>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-          Als Personal trainer help ik jou graag om jou doelstelling wel te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar moet ik beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor.
+          Als Personal trainer help ik jou graag om jou doelstelling te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar ze moeten beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-[#ba974d] hover:bg-[#99742c] text-white py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105">
@@ -382,7 +402,7 @@ function Homepage() {
                   Wie ben ik?
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Mijn naam is Roel Arts, 35 jaar en woon in Beneden-Leeuwen en ga het avontuurlijk aan als personal trainer onder de naam FitCoachRoel. Mijn doel, mensen sterker, fitter en zelfverzekerder worden.
+                  Mijn naam is Roel Arts, 35 jaar en woon in Beneden-Leeuwen en ga het avontuur aan als personal trainer onder de naam FitCoachRoel. Mijn doel, mensen sterker, fitter en zelfverzekerder worden.
                   Wat voor mij centraal staat: duurzame resultaten door structuur, effectieve training en een aanpak die past bij jouw leven.
                 </p>
                 <p className="text-gray-600 mb-4">
@@ -726,8 +746,8 @@ function Homepage() {
           </div>
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Privacy</a>
-              <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Terms</a>
+              {/* <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Privacy</a>
+              <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Terms</a> */}
               <a href="#contact" className="text-gray-600 hover:text-[#ccb521] transition">Contact</a>
             </div>
             <div className="flex space-x-4 items-center">
