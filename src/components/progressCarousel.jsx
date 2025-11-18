@@ -50,7 +50,7 @@ const Carousel = ({ images }) => {
 
   return (
     <div
-      className="relative w-full md:w-96 max-w-xl mx-auto overflow-hidden rounded-lg"
+      className="relative w-full md:w-96 overflow-hidden rounded-lg"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
