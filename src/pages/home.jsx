@@ -7,6 +7,7 @@ function Homepage() {
   const [openModal, setOpenModal] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -174,111 +175,125 @@ function Homepage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY === 0);
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // set initial state
+  
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <nav
-  className={`h-20 fixed top-0 left-0 right-0 z-50 transition-all duration-300
-    ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}
-    ${isMobileMenuOpen ? 'bg-[#1a181b]' : 'backdrop-blur-xl bg-black/30'}
-  `}
->
-  <div className="container mx-auto px-6">
-    <div className="flex items-center justify-between relative">
-      {/* Logo */}
-      <div className="md:flex-shrink-0">
-        <img
-          src={images['logo_transparent.jpg']}
-          alt="FitCoachRoel"
-          className="h-20"
-        />
-      </div>
+        className={`h-20 fixed top-0 left-0 right-0 z-50 transition-all duration-300
+          ${isNavVisible ? 'translate-y-0' : '-translate-y-full'}
+          ${isMobileMenuOpen 
+            ? 'bg-[#1a181b]' 
+            : isAtTop 
+              ? 'bg-transparent' 
+              : 'backdrop-blur-xl bg-black/30'
+          }
+        `}
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between relative">
+            {/* Logo */}
+            <div className="md:flex-shrink-0">
+              <img
+                src={images['logo_transparent.jpg']}
+                alt="FitCoachRoel"
+                className="h-20"
+              />
+            </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6 items-center">
-        <a href="#home" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Home</a>
-        <a href="#about" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Over FitCoachRoel</a>
-        <a href="#programs" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Programma's</a>
-        <a href="#contact" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Contact</a>
-      </div>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-6 items-center">
+              <a href="#home" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Home</a>
+              <a href="#about" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Over FitCoachRoel</a>
+              <a href="#programs" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Programma's</a>
+              <a href="#contact" className="text-white drop-shadow-lg hover:text-[#b08c3e] transition">Contact</a>
+            </div>
 
-      {/* Desktop Button */}
-      <div className="hidden md:flex items-center">
-        <button
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-[#ba974d] hover:bg-[#99742c] text-white px-6 py-2 rounded-lg transition shadow-lg"
+            {/* Desktop Button */}
+            <div className="hidden md:flex items-center">
+              <button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-[#ba974d] hover:bg-[#99742c] text-white px-6 py-2 rounded-lg transition shadow-lg"
+              >
+                Neem contact op
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-white drop-shadow-lg hover:text-[#b08c3e] transition focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Menu — Smooth Slide + Fade */}
+        <div
+          className={`
+            md:hidden absolute top-20 left-0 right-0 bg-[#1a181b] shadow-lg z-50
+            overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+            ${isMobileMenuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-3'}
+          `}
         >
-          Neem contact op
-        </button>
-      </div>
+          <div className="container mx-auto px-6 py-4">
+            <div className="flex flex-col space-y-4">
+              <a
+                href="#home"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+              >
+                Home
+              </a>
 
-      {/* Mobile Menu Button */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="text-white drop-shadow-lg hover:text-[#b08c3e] transition focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
-      </div>
-    </div>
-  </div>
+              <a
+                href="#about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+              >
+                Over FitCoachRoel
+              </a>
 
-  {/* Mobile Dropdown Menu — Smooth Slide + Fade */}
-  <div
-    className={`
-      md:hidden absolute top-20 left-0 right-0 bg-[#1a181b] shadow-lg z-50
-      overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-      ${isMobileMenuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-3'}
-    `}
-  >
-    <div className="container mx-auto px-6 py-4">
-      <div className="flex flex-col space-y-4">
-        <a
-          href="#home"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
-        >
-          Home
-        </a>
+              <a
+                href="#programs"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+              >
+                Programma's
+              </a>
 
-        <a
-          href="#about"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
-        >
-          Over FitCoachRoel
-        </a>
-
-        <a
-          href="#programs"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
-        >
-          Programma's
-        </a>
-
-        <a
-          href="#contact"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="text-gray-300 hover:text-[#b08c3e] transition py-2"
-        >
-          Contact
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-      {/* <div className="h-20" /> */}
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-300 hover:text-[#b08c3e] transition py-2"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       {/* Home Section - Home */}
       <section 
@@ -294,8 +309,14 @@ function Homepage() {
             FitCoachRoel: 
             <span className="text-[#ba974d]"> Voor het behalen van jouw doel.</span>
           </h1>
+          {/* <h1 className="text-5xl md:text-5xl font-bold text-[#ba974d] mb-6">
+            
+          </h1> */}
+          <p className="text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Ontdek hoe kleine, haalbare aanpassingen je lichaam sneller veranderen dan eindeloze workouts
+          </p>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-          Als Personal trainer help ik jou graag om jou doelstelling te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar ze moeten beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor.
+          {/* Als Personal trainer help ik jou graag om jou doelstelling te behalen. We zien vaak dat mensen een doelstelling hebben, maar niet weten hoe en waar ze moeten beginnen. Op welk gewicht moet ik nu trainen? Hoeveel sets moet ik herhalen? Zit ik wel goed op het toestel? Door jou met een flinke portie motivatie, positieve energie en tevens ook nog fanatiek aan te moedigen gaan wij er samen voor. */}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-[#ba974d] hover:bg-[#99742c] text-white py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105">
@@ -359,7 +380,6 @@ function Homepage() {
           </div>
         </div>
       </section>
-
       {/* About Section */}
       <section id="about" className="bg-gray-50 py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
@@ -421,7 +441,7 @@ function Homepage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Wie ben ik?
                 </h3>
-                <p className="text-gray-600 mb-4">
+                {/* <p className="text-gray-600 mb-4">
                   Mijn naam is Roel Arts, 35 jaar en woon in Beneden-Leeuwen en ga het avontuur aan als personal trainer onder de naam FitCoachRoel. Mijn doel, mensen sterker, fitter en zelfverzekerder worden.
                   Wat voor mij centraal staat: duurzame resultaten door structuur, effectieve training en een aanpak die past bij jouw leven.
                 </p>
@@ -433,11 +453,26 @@ function Homepage() {
                 </p>
                 <p className="text-gray-600">
                   Samen werken we gericht aan een sterke, gezonde en duurzame versie van jezelf.
-                </p>
+                </p> */}
+                <p className="text-gray-600 mb-4">
+  Mijn naam is Roel Arts, 35 jaar en woon in Beneden-Leeuwen. Ik ga het avontuur aan als personal trainer onder de naam FitCoachRoel. Mijn doel is mensen sterker, fitter en zelfverzekerder te maken, met duurzame resultaten door structuur, effectieve training en een aanpak die past bij jouw leven.
+</p>
+<p className="text-gray-600 mb-4">
+  Als personal trainer help ik jou graag om jouw doelstellingen te behalen. Vaak zien we dat mensen een doel hebben, maar niet weten hoe en waar te beginnen: op welk gewicht moet ik trainen? Hoeveel sets moet ik herhalen? Zit ik goed op het toestel? Samen pakken we dit aan met motivatie, positieve energie en een flinke dosis fanatisme, zodat jij je doelen bereikt.
+</p>
+{/* <p className="text-gray-600 mb-4">
+  Om te laten zien wat een doordachte combinatie van training en voeding kan betekenen, deel ik graag mijn eigen vooruitgang. Niet om te vergelijken, maar om te laten zien wat mogelijk is wanneer je de juiste focus en begeleiding hebt.
+</p> */}
+<p className="text-gray-600 mb-4">
+  Mijn missie is om jou te inspireren om stappen te zetten richting jouw doelen — of je nu wilt afvallen, spiermassa wilt opbouwen of simpelweg een fittere levensstijl wilt creëren.
+</p>
+<p className="text-gray-600">
+  Samen werken we gericht aan een sterke, gezonde en duurzame versie van jezelf.
+</p>
               </div>
               {/* <div className="bg-white p-8 rounded-lg shadow-lg"> */}
               <div className="order-1 md:order-2">
-                <img src={images['aboutme2.jpg']} alt="Roel Arts" className="w-full md:w-96 h-96 object-cover object-top rounded-lg" />
+                <img src={images['aboutme2.jpg']} alt="Roel Arts" className="w-full md:w-96 h-96 md:h-full object-cover object-top rounded-lg" />
               </div>
             </div>
           </div>
