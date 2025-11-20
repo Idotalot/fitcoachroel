@@ -51,32 +51,11 @@ function Homepage() {
           item: 'Pakket van 10 sessies',
           price: '€599,00',
           additionalInfo: '€59,90 per sessie'
-        }
-      ],
-      duration: 'Sessies van 60 minuten'
-    },
-    groep: {
-      title: 'Groepstraining',
-      description: 'Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen. De lessen vinden plaats op locatie bij Maas en Waalfit.',
-      features: [
-        'Kleine groepen (max 4-8 personen) voor persoonlijke aandacht',
-        'Gezellige en motiverende sfeer',
-        'Groepsdynamiek die je extra motiveert',
-        'Diverse trainingen: kracht, cardio, HIIT',
-        'Flexibele planning met verschillende tijdstippen',
-        'Voor alle niveaus, van beginner tot gevorderd',
-        'Sociale aspect: train samen, bereik meer'
-      ],
-      pricing: [
-        {
-          item: 'Losse sessie',
-          price: '€20,00',
-          additionalInfo: 'Per sessie van 60 minuten (Per persoon)'
         },
         {
-          item: 'Strippenkaart 15 sessies',
-          price: '€225,00',
-          additionalInfo: '€15 per groepssessie (Per persoon)'
+          item: 'Pakket van 20 sessies',
+          price: '€1099,00',
+          additionalInfo: '€54,95 per sessie'
         },
       ],
       duration: 'Sessies van 60 minuten'
@@ -95,18 +74,64 @@ function Homepage() {
       ],
       pricing: [
         {
+          item: 'Kenningsmakingssessie',
+          price: '€17,50',
+          additionalInfo: 'Eénmalige introductie sessie van 60 minuten (Per persoon)'
+        },
+        {
           item: 'Losse sessie',
           price: '€35,00',
+          additionalInfo: 'per sessie van 60 minuten (Per persoon)'
+        },
+        {
+          item: 'Pakket van 10 sessies',
+          price: '€349,00',
+          additionalInfo: '€34,99 per sessie (Per persoon)'
+        },
+        {
+          item: 'Pakket van 20 sessies',
+          price: '€649,00',
+          additionalInfo: '€32,45 per sessie (Per persoon)'
+        },
+      ],
+      duration: 'Sessies van 60 minuten'
+    },
+    groep: {
+      title: 'Groepstraining',
+      description: 'Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen. De lessen vinden plaats op locatie bij Maas en Waalfit.',
+      features: [
+        'Kleine groepen (max 4-6 personen) voor persoonlijke aandacht',
+        'Gezellige en motiverende sfeer',
+        'Groepsdynamiek die je extra motiveert',
+        'Diverse trainingen: kracht, cardio, HIIT',
+        'Flexibele planning met verschillende tijdstippen',
+        'Voor alle niveaus, van beginner tot gevorderd',
+        'Sociale aspect: train samen, bereik meer'
+      ],
+      pricing: [
+        {
+          item: 'Kenningsmakingssessie',
+          price: '€7,50',
+          additionalInfo: 'Eénmalige introductie sessie van 60 minuten (Per persoon)'
+        },
+        {
+          item: 'Losse sessie',
+          price: '€15,00',
           additionalInfo: 'Per sessie van 60 minuten (Per persoon)'
         },
         {
           item: 'Pakket van 10 sessies',
-          price: '€450,00',
-          additionalInfo: '€30 per sessie (Per persoon)'
-        }
+          price: '€149,00',
+          additionalInfo: '€14,90 per groepssessie (Per persoon)'
+        },
+        {
+          item: 'Pakket van 20 sessies',
+          price: '€199,00',
+          additionalInfo: '€13,27 per groepssessie (Per persoon)'
+        },
       ],
       duration: 'Sessies van 60 minuten'
-    }
+    },    
   };
 
   const closeModal = () => {
