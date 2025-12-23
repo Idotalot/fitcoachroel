@@ -100,7 +100,7 @@ function Homepage() {
       title: 'Groepstraining',
       description: 'Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen. De lessen vinden plaats op locatie bij Maas en Waalfit.',
       features: [
-        'Kleine groepen (max 4-6 personen) voor persoonlijke aandacht',
+        'Kleine groepen (4 personen) voor persoonlijke aandacht',
         'Gezellige en motiverende sfeer',
         'Groepsdynamiek die je extra motiveert',
         'Diverse trainingen: kracht, cardio, HIIT',
@@ -635,7 +635,7 @@ function Homepage() {
                 Train samen met anderen in kleine groepen. Motiverend, gezellig en effectief. Perfect voor mensen die graag in groepsverband trainen.
               </p>
               <ul className="text-gray-600 space-y-2 mb-6">
-                <li>• Kleine groepen (max 8 personen)</li>
+                <li>• Kleine groepen (4 personen)</li>
                 <li>• Gezellige sfeer</li>
                 <li>• Motiverende omgeving</li>
                 <li>• Betaalbaar tarief</li>
