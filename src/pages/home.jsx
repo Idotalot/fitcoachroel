@@ -820,10 +820,13 @@ function Homepage() {
 
       {/* Footer */}
       <footer className="container mx-auto px-6 py-8 border-t border-gray-200">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center">
+          <div className="text-gray-600 text-sm mt-1">
+            Gerealiseerd door <a href="https://jordyperret.nl" target="_blank" rel="noopener noreferrer" className="text-[#ba974d] hover:text-[#99742c] underline">Jordy Perret</a>
+          </div>
           <div className="text-gray-700 mb-4 md:mb-0">
             © 2025 FitCoachRoel. All rights reserved.
-          </div>
+          </div>          
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
             <div className="flex space-x-6">
               {/* <a href="#" className="text-gray-600 hover:text-[#ccb521] transition">Privacy</a>
