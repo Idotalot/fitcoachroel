@@ -942,9 +942,9 @@ function Homepage() {
                 </p>
               </div>
 
-              <p className="text-gray-600 text-sm mb-6">
+              {/* <p className="text-gray-600 text-sm mb-6">
                 *Disclaimer: Om PT, Duo Training of SGT te volgen dient u een <a href="https://maasenwaalfit.nl/tarieven/" className='text-[#ba974d] hover:text-[#99742c] transition underline'> FIT 12 abonnement</a> af te nemen bij Maas en Waalfit. U kunt dan naast uw training onbeperkt aan uw doelen werken.*
-              </p>
+              </p> */}
               
               <div className="flex gap-4">
                 <button
